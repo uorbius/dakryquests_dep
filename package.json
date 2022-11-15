@@ -1,0 +1,16 @@
+{
+  "name": "amber-cinema",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run start --prefix client\" \"npm run dev --prefix server\"",
+    "prod": "npm run prod --prefix server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.5.0"
+  }
+}
