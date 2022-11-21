@@ -1,0 +1,26 @@
+@import '../../../styles/variables.sass'
+
+.Btn 
+	background: $co
+	width: 100%
+	border: none
+	color: $color 
+	padding: 10px
+	border-radius: 5px
+	cursor: pointer
+	box-sizing: border-box 
+	transition: $transition
+
+	&:disabled 
+		background: transparent
+		color: $co 
+		border: 1px solid $co
+		cursor: auto
+
+	&:not(:disabled)
+
+		&:focus
+			background: $co
+
+		&:hover
+			background: $f-co
