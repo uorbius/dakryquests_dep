@@ -1,5 +1,6 @@
 const DBAgent = require("../utils/db")
 const sqlite = require("sqlite3")
+const FilmModel = require("../dtos/film.dto")
 
 class FileController {
 
@@ -10,12 +11,13 @@ class FileController {
             return res.json(rows)
         })
     }
-    
+     
     getById(req, res) {
         const {id} = req.params
         DBAgent.db.get(DBAgent.__getByIdMethod, [id], (err, row) => {
+            row.players = JSON.parse(row.players)
             return res.json(row)
-        })
+        }) 
     }
 
     getAll(req, res) {
@@ -24,9 +26,15 @@ class FileController {
         })
     }
 
-    search(req, res) {
-        const {query} = req.query
-        DBAgent.db.all(DBAgent.formatSearchMethodStr(query), [], (err, rows) => {
+    search(req, res) { 
+        const {limit, offset, query} = req.body
+        console.log(query, limit, offset)
+        DBAgent.db.all(DBAgent.formatSearchMethodStr(query, offset, limit), [], (err, rows) => {
+            if(!rows) return res.json([])
+            const arr = []
+            rows.map((row) => {
+                row.players = JSON.parse(row.players)
+            })
             return res.json(rows)
         })
     }

@@ -1,0 +1,57 @@
+@import "../../sass/var.sass"
+
+.Navbar 
+    position: relative
+    display: grid 
+    grid-template-columns: 15% 70% 15%
+    padding: 1.5rem
+
+    .Navbar_promo
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        .Amber 
+            display: flex
+            align-items: center
+
+            .Icon 
+                margin-right: .5rem
+
+            .Name 
+                font-family: "GT America Mono"
+                font-weight: 400
+                font-size: 18px
+
+        .Opts 
+            display: flex
+            gap: 1rem
+
+            a
+                color: $color 
+                text-decoration: none
+                transition: .2s all ease 
+
+                &:hover
+                    opacity: 0.5
+
+        .Profile 
+            display: flex
+            align-items: center
+
+            .Icon 
+
+            .Logout_btn 
+                background: $bg
+                border: 2px solid rgba(240,168,50,1)
+                padding: .2rem .4rem 
+                color: $color
+                cursor: pointer 
+                border-radius: 6px
+                margin-right: 1rem
+                font-family: "GT America Mono" 
+                transition: .2s all ease
+
+
+                &:hover 
+                    border-radius: 10px

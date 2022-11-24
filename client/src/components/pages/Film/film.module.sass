@@ -1,0 +1,61 @@
+@import "../../../sass/var"
+
+.FilmPage_container 
+    display: grid
+    grid-template-columns: 40% 60%
+    padding: 3rem 
+
+    .Picture 
+        min-height: 80vh
+        border-radius: 16px
+
+    .Content 
+        margin-left: 3rem
+        width: 100%
+    
+        .Separator 
+            margin: 1rem 0
+            display: flex
+            gap: 1rem
+            
+            .Param 
+                display: flex
+                align-items: center
+                gap: .3rem
+
+                svg 
+                    display: block 
+                    width: 20px
+
+        .Pager
+            display: grid 
+            gap: 1rem
+            
+            .Pager_headers 
+                display: flex
+                gap: 1rem
+                
+                .Pager_segment 
+                    border-bottom: 2px solid transparent 
+                    transition: .2s all ease
+                    cursor: pointer 
+                    padding: .2rem 0
+
+                    .Name 
+                        font-family: "GT America Mono"
+
+                    &.Pager_active 
+                        border-color: $color_a
+
+                    &:hover 
+                        border-color: $color_a
+    
+.Player_container 
+    display: grid 
+    justify-content: center 
+    align-items: center
+    min-height: calc(100vh - 80px)
+
+    .IFrame
+        border: none
+        border-radius: 10px

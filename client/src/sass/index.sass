@@ -7,37 +7,52 @@
 
 body 
     font-family: Roobert
-    display: flex
-    justify-content: center 
-    align-items: center 
-    height: 100vh
+    background: $bg
+    color: $color
+    overflow-x: hidden
 
-.Welkome 
-    text-align: center
-
-.Welkome_content 
-    text-align: center
-
-a
-    padding: 1rem
-    border: 2px solid #000 
-    font: 400 Roobert
-    background: #000
-    color: #fff
+.button 
+    height: 2.875rem
+    padding: 0 1.125rem
+    border-radius: .125rem
+    border: 1px solid $color
+    background: $color
+    color: $bg
+    font-family: "GT America Mono"
+    cursor: pointer 
     transition: .2s all ease 
-    cursor: pointer
-    text-decoration: none
 
     &:hover 
-        background: #fff 
-        color: #000
+        background: transparent
+        color: $color
 
-.btns
-    -moz-display: flex
-    -o-display: flex
-    display: flex
+.button_a
+    height: 2.875rem
+    padding: 0 1.125rem
+    border-radius: .125rem
+    background: linear-gradient(130deg, rgba(240,168,50,1) 0%, rgba(255,144,93,1) 100%)
+    color: $bg
+    font-family: "GT America Mono"
+    cursor: pointer 
+    transition: .2s all ease 
+    border: none 
+    margin-top: 1rem
 
-    -moz-gap: .5rem
-    -o-gap: .5rem
-    gap: .5rem
-    
+    &:hover 
+        transform: scale(1.1)
+
+.a_col
+    background: linear-gradient(90deg, rgba(240,168,50,1) 0%, rgba(255,144,93,1) 100%)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+
+svg 
+    display: block
+
+.main-stop 
+    stop-color: rgba(240,168,50,1)
+
+.alt-stop 
+    stop-color: rgba(255,144,93,1)
+
+
