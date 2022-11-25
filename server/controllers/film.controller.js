@@ -34,6 +34,7 @@ class FileController {
             const arr = []
             rows.map((row) => {
                 row.players = JSON.parse(row.players)
+                row.genres = JSON.parse(row.genres)
             })
             return res.json(rows)
         })

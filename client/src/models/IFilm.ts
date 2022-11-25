@@ -11,4 +11,5 @@ export interface IFilm {
     description: string 
     poster: string
     players: IPlayer[]
+    genres: [number]
 }

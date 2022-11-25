@@ -26,6 +26,7 @@ const HomePage: FC = () => {
 	const [canLoad, setCanLoad] = useState<boolean>(true)
 
     function reset() {
+        setNotFound(false)
         setCanLoad(true)
         setPage(0)
         return 0
@@ -47,11 +48,17 @@ const HomePage: FC = () => {
 			const response = await userService.search(searchQuery, limit, curr_page * limit)
 
 			if(!response.data.length) {
-                setFilms([])
-                setNotFound(true)
-				setCanLoad(false)
+                if(arg==2) {
+                    setFilms([])
+                    if(page == 0) {
+                        setNotFound(true)
+                        setCanLoad(false)
+                    }
+                }
+                if(page != 0) {
+                    setCanLoad(false)
+                }
 			} else {
-                if(notFound) setNotFound(false)
                 //If function called by user search - se
                 if(arg == 2 && films.length) return setFilms([...response.data])
 				setFilms([...films, ...response.data])
@@ -115,7 +122,7 @@ const HomePage: FC = () => {
                 </div>
             </div>
             <div className={cl.Section_content}>
-                <div className={`${cl.Content_content} ${canLoad == false ? cl.Not_Found : ""}`}>
+                <div className={`${cl.Content_content} ${notFound == true ? cl.Not_Found : ""}`}>
                     {
                         films.length ? films.map((film: IFilm) => 
                             <Film key={film.id} {...film}/>

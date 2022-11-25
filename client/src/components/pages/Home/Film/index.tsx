@@ -3,6 +3,7 @@ import React, {FC, useContext, useEffect, useState, useRef } from 'react'
 import { IFilm } from "../../../../models/IFilm"
 import cl from "./film.module.sass"
 import {useNavigate} from "react-router-dom"
+import Genre from "../../../Genre"
 
 const HomePage: FC<IFilm> = (props: IFilm) => {
 
@@ -32,8 +33,9 @@ const HomePage: FC<IFilm> = (props: IFilm) => {
             </div>
             <div className={cl.Content}>
                 <p className={cl.Name}> {props.name} </p>
-                <div className={cl.Spacer}></div>
-                <p>{props.year}</p>
+                <div className={cl.Description}> 
+                    {props.year}, <Genre genre={1}/> 
+                </div>
             </div>
         </div>
     )

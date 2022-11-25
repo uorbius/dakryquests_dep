@@ -27,7 +27,7 @@ const RegistrationPage: FC = () => {
                     placeholder='Password'
                     default={true}
                 />
-                <button className="button" onClick={() => store.login(email, password)}>
+                <button className="button" onClick={() => store.registration(email, password)}>
                    Create account
                 </button>
                 <span className={cl.Act}>
