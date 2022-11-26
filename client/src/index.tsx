@@ -4,6 +4,7 @@ import App from './App';
 import Store from "./store/store";
 import "./sass/index.sass"
 import 'swiper/css';
+import * as serviceWorker from "./sw"
 
 interface State {
     store: Store,
@@ -15,6 +16,12 @@ export const Context = createContext<State>({
     store,
 })
 
+const initSW = async () => {
+    console.log('called!!!')
+    await serviceWorker.register(null)
+    console.log("called")
+}
+
 ReactDOM.render(
     <Context.Provider value={{
         store
@@ -23,4 +30,6 @@ ReactDOM.render(
     </Context.Provider>,
   document.getElementById('root')
 );
+
+initSW()
 

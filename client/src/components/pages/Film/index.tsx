@@ -30,6 +30,7 @@ const FilmPage = () => {
         return innerWidth
       }
 
+
     useEffect(() => {
         setInnerWidth(getWindowSize())
         function handleWindowResize() {
@@ -41,7 +42,6 @@ const FilmPage = () => {
     }, []);
     
     if(!film || innerWidth == null) return <h1>sas</h1>
-
     return (
         <Swiper
             spaceBetween={50}
@@ -133,7 +133,7 @@ const FilmPage = () => {
             </SwiperSlide>
             <SwiperSlide>
                 <div className={cl.Player_container}>
-                    <iframe style={{ width: innerWidth/2, height: innerWidth/3 }} className={cl.IFrame} src={film.players[1].player} allowFullScreen></iframe>
+                    <iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" style={{ width: innerWidth/2, height: innerWidth/3 }} className={cl.IFrame} src={film.players[1].player} allowFullScreen></iframe>
                 </div>
             </SwiperSlide>
         </Swiper>

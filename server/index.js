@@ -19,6 +19,10 @@ app.use(cors({
 app.use('/api', routes)
 app.use(errorMiddleware)
 
+app.get("/sw.ts", (req, res) => {
+  console.log(path.resolve(__dirname, "..", "client", "src", "sw.ts"));
+});
+
 if (process.env.NODE_ENV === 'prod') {
   app.use('/', express.static(path.join(__dirname, "..", 'client', 'build')))
   
