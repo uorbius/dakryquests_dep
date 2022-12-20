@@ -6,10 +6,11 @@ export interface IFilm {
     id: number
     name: string
     year: string
-    country: string
-    length: string
-    description: string 
+    description: string
+    countries: [string]
+    duration: string
+    genres: [string]
     poster: string
+    language: number
     players: IPlayer[]
-    genres: [number]
 }

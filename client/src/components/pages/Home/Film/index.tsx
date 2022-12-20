@@ -6,21 +6,15 @@ import {useNavigate} from "react-router-dom"
 import Genre from "../../../Genre"
 
 const HomePage: FC<IFilm> = (props: IFilm) => {
-
+ 
     const navigate = useNavigate()
 
     return (
         <div className={cl.Film_container}> 
             <div 
-                className={cl.Picture} 
-                style={
-                    {
-                        background: `url(${props.poster})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center center"
-                    }
-                }
+                className={cl.Picture}
             >
+                <img src={props.poster} className={cl.Img} referrerPolicy={"no-referrer"}/>
                 <div className={cl.Blurer} onClick={() => navigate(`/film/${props.id}`)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="44" viewBox="0 0 16 16">
                         <linearGradient id="gradient">
@@ -34,7 +28,14 @@ const HomePage: FC<IFilm> = (props: IFilm) => {
             <div className={cl.Content}>
                 <p className={cl.Name}> {props.name} </p>
                 <div className={cl.Description}> 
-                    {props.year}, <Genre genre={1}/> 
+                    {props.year}. {props.genres.map((genre, index) => {
+                            if(index + 1 === props.genres.length) {
+                                return <span key={genre}> {genre} </span>
+                            } else {
+                                return <span key={genre}> {genre}, </span>
+                            }
+                        }
+                    )}
                 </div>
             </div>
         </div>

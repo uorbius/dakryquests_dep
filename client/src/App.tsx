@@ -8,8 +8,13 @@ import {IUser} from "./models/IUser"
 import UserService from "./services/UserService"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Navbar from './components/Navbar'
-import Modal from './components/Modal'
+import LogModal from './components/LogModal'
 import FilmPage from './components/pages/Film'
+import ProfilePage from './components/pages/Profile'
+import Footer from './components/Footer'
+import LogoutModal from './components/LogoutModal'
+
+const client = new WebSocket('ws://127.0.0.1:5001');
 
 const App: FC = () => {
     const {store} = useContext(Context)
@@ -19,6 +24,11 @@ const App: FC = () => {
         if (localStorage.getItem('token')) {
             store.checkAuth()
         }
+        if(localStorage.getItem('lang')) {
+            store.checkLang()
+        } else { 
+            store.setDefaultLang()
+        }
     }, [])
 
     if (store.isLoading) {
@@ -27,25 +37,27 @@ const App: FC = () => {
 
     return (
         <BrowserRouter>
-            {
-                store.isAuth && 
-                <Navbar/>
-            }
+            <Navbar/>
+            <LogoutModal/>
+            <LogModal/>
             <Routes>
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/film/:id" element={<FilmPage/>}/>
                 {
                     !store.isAuth ? 
                     <>
-                        <Route path="/" element={<LoginPage/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/registration" element={<RegistrationPage/>}/>
                     </>
                     :
                     <>
                         <Route path="/registration" element={<Navigate to="/"/>}/>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/film/:id" element={<FilmPage/>}/>
+                        <Route path="/login" element={<Navigate to="/"/>}/>
+                        <Route path="/profile" element={<ProfilePage/>}/>
                     </>
-                }
+                }     
             </Routes>
+            <Footer/>
         </BrowserRouter>
     )
 }

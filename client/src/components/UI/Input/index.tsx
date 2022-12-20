@@ -1,5 +1,6 @@
 
 import {FC, useState} from 'react'
+import { useTranslation } from '../../../hooks/translator.hook'
 import cl from './index.module.sass'
  
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -15,6 +16,8 @@ const Input: FC<InputProps> = (props: InputProps) => {
         setContent(e.target.value)
         props.onChange?.(e)
     }
+
+    const {translate} = useTranslation()
     
     return (
         <div className={`${cl.Input_container} ${props.default ? cl.Default : cl.Margin}`}>
@@ -36,9 +39,9 @@ const Input: FC<InputProps> = (props: InputProps) => {
                                     {
                                         type === 'password'
                                             ?
-                                            'Show'
+                                            translate("g.UI.input.viewer.show")
                                             :
-                                            'Hide'
+                                            translate("g.UI.input.viewer.hide")
                                     }
                                 </button>
                             </span>

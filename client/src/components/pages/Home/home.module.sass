@@ -26,6 +26,7 @@
             position: absolute
             display: grid
             grid-template-columns: 35% 30% 35%
+            gap: .5rem
             width: 100%
             top: -20px
             align-items: center
@@ -56,7 +57,6 @@
                     border: none 
                     background: transparent
                     color: $color
-                    font-family: "GT America Mono"
                     outline: none
                     width: 100%
             
@@ -79,6 +79,11 @@
                             path
                                 stroke: $color_a
 
+            .Tool_container 
+                display: flex 
+                justify-content: start
+            
+
 
     .Section_content
         min-height: 60vh
@@ -87,7 +92,7 @@
         .Content_content 
             padding: 4rem 4rem 4rem 4rem
             display: grid 
-            grid-template-columns: auto auto auto  auto
+            grid-template-columns: calc(20% - 1.5rem) calc(20% - 1.5rem) calc(20% - 1.5rem)  calc(20% - 1.5rem) calc(20% - 1.5rem)
             grid-gap: 2rem
 
             &.Not_Found
@@ -102,6 +107,36 @@
                 align-items: center
                 svg 
                     width: 50px
+
+@media(max-width: $mobile_res)
+    .Home_section 
+        .Section_starter 
+            
+            h1
+                font-size: 32px
+                font-weight: 600
+                margin-bottom: 3rem
+                padding: 0 1rem
+
+            p
+                font-size: 18px
+                margin-bottom: 1rem
+
+        .Search_section
+
+            .Search_field 
+                grid-template-columns: auto
+                display: grid
+                justify-content: center 
+            .Tool_container 
+                justify-content: center!important
+
+        .Section_content 
+            padding-top: 40px
+            .Content_content 
+                grid-template-columns: auto
+
+                
 
 $width: 100px
 $height: 100px
@@ -167,4 +202,25 @@ $height: 100px
         100%
             transform-origin: left
             transform: scalex(0.3)
+
+.Click_container
+    display: flex
+    justify-content: center
+    padding: 0rem 4rem 4rem 4rem
+
+    .Load_more 
+        display: flex
+        justify-content: center 
+        align-items: center
+
+        &:hover 
+            svg 
+                fill: $color
+
+        svg 
+            margin-right: .1rem
+            transition: .2s all ease
+            height: 26px
+            fill: #fff
+
         

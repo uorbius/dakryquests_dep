@@ -7,7 +7,7 @@ class UserController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return next(ApiError.BadRequest('Ошибка при валидации', errors.array()))
+                return next(ApiError.BadRequest(ApiError.econfig.validation_err, errors.array()))
             }
             const {email, password} = req.body;
             const userData = await userService.registration(email, password);
@@ -15,6 +15,17 @@ class UserController {
             return res.json(userData);
         } catch (e) {
             next(e);
+        }
+    }
+
+    async update(req, res, next) {
+        try {
+            const {txt, password} = req.body
+            const {avatar} = req.files
+            console.log(req.user)
+            await userService.update(req.user.id, txt, password, avatar)
+        } catch(e) {
+            console.log(e)
         }
     }
 
@@ -32,7 +43,8 @@ class UserController {
     async logout(req, res, next) {
         try {
             const {refreshToken} = req.cookies;
-            const token = await userService.logout(refreshToken);
+            const {ddf} = req.body
+            const token = await userService.logout(refreshToken, JSON.parse(ddf), req.user);
             res.clearCookie('refreshToken');
             return res.json(token);
         } catch (e) {

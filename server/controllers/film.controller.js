@@ -6,8 +6,7 @@ class FileController {
 
     paginate(req, res) {
         const {offset, limit} = req.query
-        DBAgent.db.all(DBAgent.__paginateMethod, [offset, limit], (err, rows) => {
-            console.log(rows)
+        DBAgent.db.all(DBAgent.__paginateMethod, [offset, limit], (err, rows) => { 
             return res.json(rows)
         })
     }
@@ -28,7 +27,6 @@ class FileController {
 
     search(req, res) { 
         const {limit, offset, query} = req.body
-        console.log(query, limit, offset)
         DBAgent.db.all(DBAgent.formatSearchMethodStr(query, offset, limit), [], (err, rows) => {
             if(!rows) return res.json([])
             const arr = []

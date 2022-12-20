@@ -7,21 +7,22 @@ const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const mongoose = require("mongoose")
 const errorMiddleware = require('./middlewares/error.middleware')
+const fileupload = require("express-fileupload")
+const http = require("http")
+const rid = require('random-id')
 
 const app = express() 
  
+app.use('/static', express.static(path.join(__dirname, '/static')))
+app.use(fileupload()) 
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT
 }))
-app.use('/api', routes)
+app.use('/api', routes)  
 app.use(errorMiddleware)
-
-app.get("/sw.ts", (req, res) => {
-  console.log(path.resolve(__dirname, "..", "client", "src", "sw.ts"));
-});
 
 if (process.env.NODE_ENV === 'prod') {
   app.use('/', express.static(path.join(__dirname, "..", 'client', 'build')))
@@ -37,7 +38,11 @@ async function bootstrap() {
           useNewUrlParser: true,
           useUnifiedTopology: true
         })
-        app.listen(process.env.PORT, () => console.log(`\n App has been started on port ${process.env.PORT} \n`))
+        app.listen(process.env.PORT, () => console.log(`\n[server] Listening on ${process.env.PORT} \n`))
+        //Init WebSocketServer
+        require("./websocket/index")
+        console.log(`[WSS] Listening on ${process.env.WSS_PORT}`) 
+
     } catch(e) {
         console.log(e)
     }

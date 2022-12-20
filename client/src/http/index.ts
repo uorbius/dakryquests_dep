@@ -2,10 +2,14 @@ import axios, {AxiosRequestConfig} from 'axios';
 import {AuthResponse} from "../models/response/AuthResponse";
 import {store} from "../index";
 import {IUser} from "../models/IUser";
+import { ILogModal } from '../store/store';
 
 export const API_URL = `/api`
 
 const $api = axios.create({
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    },
     withCredentials: true,
     baseURL: API_URL
 })
@@ -31,6 +35,9 @@ $api.interceptors.response.use((config) => {
             console.log('Ne АВТОРИЗОВАН')
         }
     }
+    store.callLogModal({
+        ...error.response.data.config as ILogModal
+    })
     throw error;
 })
 
